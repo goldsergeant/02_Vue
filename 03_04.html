@@ -1,0 +1,28 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="name" />
+      <!-- v-model 추가 -->
+      <br />
+      입력한 값: <span>{{ name }}</span>
+    </div>
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const vm = Vue.createApp({
+        // let 대신 const
+        name: 'App',
+        data() {
+          return {
+            name: '', // name 초기화 (빈 문자열)
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

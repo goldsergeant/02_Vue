@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 예제</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h2>취미생활</h2>
+        <label>
+          <input type="checkbox" value="A" v-model="hobby" />
+          <!-- v-model 수정 -->
+          운동
+        </label>
+        <label>
+          <input type="checkbox" value="B" v-model="hobby" />
+          <!-- v-model 수정 -->
+          독서
+        </label>
+        <label>
+          <input type="checkbox" value="C" v-model="hobby" />
+          <!-- v-model 수정 -->
+          음악
+        </label>
+        <label>
+          <input type="checkbox" value="D" v-model="hobby" />
+          <!-- v-model 수정 -->
+          댄스
+        </label>
+        <label>
+          <input type="checkbox" value="E" v-model="hobby" />
+          <!-- v-model 수정 -->
+          역사
+        </label>
+      </div>
+      <div>
+        <h2>상품 분류 선택</h2>
+        <select v-model="category">
+          <!-- v-model 수정 (선택사항, 이미 올바름) -->
+          <option value="">----상품 분류를 선택하세요.</option>
+          <option value="C01">레저</option>
+          <option value="C02">가전</option>
+          <option value="C03">음식</option>
+          <option value="C04">도서</option>
+          <option value="C05">주방</option>
+        </select>
+      </div>
+      <hr />
+      <div>
+        선택한 취미: {{ hobby.join(',') }}
+        <br />
+        선택한 상품 분류: {{ category }}
+      </div>
+    </div>
+
+    <!-- Vue.js 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const vm = Vue.createApp({
+        // let 대신 const 사용 (vm은 재할당되지 않으므로)
+        name: 'App',
+        data() {
+          return {
+            hobby: [],
+            category: '',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

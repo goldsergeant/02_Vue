@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      잔고: <input type="number" v-model.number="balance" />
+      <!-- type="number"와 v-model.number로 숫자 입력 및 형변환 -->
+      <br />
+      회원님의 등급:
+      <span>{{ memberLevel }}</span>
+    </div>
+
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            balance: 0, // 초기값 설정
+          };
+        },
+        computed: {
+          // 계산된 속성 정의
+          memberLevel() {
+            if (this.balance >= 1000000) {
+              return 'Gold';
+            } else if (this.balance >= 500000) {
+              return 'Silver';
+            } else if (this.balance >= 200000) {
+              return 'Bronze';
+            } else {
+              return 'Basic';
+            }
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
