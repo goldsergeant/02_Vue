@@ -1,0 +1,63 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 테이블 스타일 (선택 사항) */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: purple;
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <table>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>전화번호</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- v-for를 사용하여 contacts 배열의 각 객체를 순회 -->
+          <tr v-for="contact in contacts" :key="contact.no">
+            <td>{{ contact.no }}</td>
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.tel }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            contacts: [
+              { no: 1011, name: 'RM', tel: '010-3456-0299' },
+              { no: 1012, name: '정국', tel: '010-3456-0298' },
+              { no: 1013, name: '제이홉', tel: '010-3456-0297' },
+              { no: 1014, name: '슈가', tel: '010-3456-0296' },
+            ],
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
