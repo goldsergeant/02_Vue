@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>값 변경 감지 및 합 출력</title>
+  </head>
+  <body>
+    <div id="app">
+      x : <input type="text" v-model.number="x" /><br />
+      y : <input type="text" v-model.number="y" /><br />
+      덧셈 결과 : {{ sum }}
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/vue@3"></script>
+    <script type="text/javascript">
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return { x: 0, y: 0 };
+        },
+        computed: {
+          sum() {
+            return this.x + this.y;
+          },
+        },
+        watch: {
+          x(newVal, oldVal) {
+            console.log(`🔄 x 값 변경: ${oldVal} → ${newVal}`);
+          },
+          y(newVal, oldVal) {
+            console.log(`🔄 y 값 변경: ${oldVal} → ${newVal}`);
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

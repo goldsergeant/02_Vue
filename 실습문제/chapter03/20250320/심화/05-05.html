@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 처리</title>
+  </head>
+  <body>
+    <div id="app">
+      <div
+        style="position: absolute; left: 5px; top: 5px; right: 5px; bottom: 5px"
+      >
+        <a
+          href="https://facebook.com"
+          @click.prevent="confirmFB"
+          @contextmenu="ctxStop"
+          >페이스북</a
+        >
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {};
+        },
+        methods: {
+          confirmFB(event) {
+            if (!confirm('페이스북으로 이동하시겠습니까?')) {
+              event.preventDefault(); // 이동 취소
+            }
+          },
+          ctxStop(event) {
+            event.preventDefault(); // 기본 우클릭 메뉴 차단
+            alert('우클릭이 차단되었습니다!'); // 알림 표시
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
