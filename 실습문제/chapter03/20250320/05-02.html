@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue 계좌 관리</title>
+  </head>
+  <body>
+    <div id="app">
+      금액: <input type="number" v-model.number="amount" /> <br />
+      <button @click="deposit">입금</button>
+      <button @click="withdraw">인출</button>
+      <br />
+      <h3>계좌 잔고: {{ balance }}원</h3>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            amount: 0, // 입력한 금액
+            balance: 0, // 계좌 잔고
+          };
+        },
+        methods: {
+          deposit() {
+            if (this.amount > 0) {
+              this.balance += this.amount;
+              console.log(
+                `💰 ${this.amount}원 입금됨. 현재 잔고: ${this.balance}원`
+              );
+            } else {
+              alert('입금할 금액을 입력하세요!');
+            }
+          },
+          withdraw() {
+            if (this.amount > 0 && this.amount <= this.balance) {
+              this.balance -= this.amount;
+              console.log(
+                `💸 ${this.amount}원 출금됨. 현재 잔고: ${this.balance}원`
+              );
+            } else if (this.amount > this.balance) {
+              alert('잔고가 부족합니다!');
+            } else {
+              alert('출금할 금액을 입력하세요!');
+            }
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

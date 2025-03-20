@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue 합계 계산</title>
+  </head>
+  <body>
+    <div id="app">
+      1보다 큰 수: <input type="number" v-model.number="num" min="1" />
+      <br />
+      1부터 입력한 값까지의 합: <span>{{ sum }}</span><br />
+      1부터 입력한 값까지의 합: <span>{{ sum }}</span><br />
+      1부터 입력한 값까지의 합: <span>{{ sum }}</span><br />
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return { num: 1 }; // 기본값을 1로 설정
+        },
+        computed: {
+          sum() {
+            let total = 0;
+            for (let i = 1; i <= this.num; i++) {
+              total += i;
+            }
+            return total;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
