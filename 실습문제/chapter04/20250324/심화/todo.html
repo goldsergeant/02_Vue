@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TodoList App (Bootstrap)</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .completed {
+        background-color: #d4edda; /* Bootstrap's success color, but lighter */
+        text-decoration: line-through; /* Add line-through for completed tasks */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container mt-5">
+      <!-- Bootstrap container and margin-top -->
+      <div class="border rounded bg-light">
+        <h1 class="my-4 row justify-content-center align-middle">
+          :: Todolist App
+        </h1>
+      </div>
+      <!-- Bootstrap margin-bottom -->
+      <div class="border p-3">
+        <div class="input-group mb-3">
+          <!-- Bootstrap input group and margin-bottom -->
+          <input
+            type="text"
+            class="form-control"
+            v-model="newTodo"
+            placeholder="할일을 여기에 입력!"
+            @keyup.enter="addTodo"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-primary" @click="addTodo">추가</button>
+          </div>
+        </div>
+
+        <ul class="list-group">
+          <li
+            v-for="todo in sortedTodos"
+            :key="todo.text"
+            :class="{ 'completed': todo.completed, 'list-group-item': true, 'd-flex': true, 'justify-content-between': true, 'align-items-center': true }"
+          >
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                :checked="todo.completed"
+                @change="toggleTodo(todo)"
+                :id="'todo-' + todo.text"
+              />
+              <label class="form-check-label" :for="'todo-' + todo.text">
+                {{ todo.text }}
+              </label>
+            </div>
+            <button @click="removeTodo(todo)" class="btn btn-secondary btn-sm">
+              삭제
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            newTodo: '',
+            todos: [
+              { text: '딸과 공원 산책', completed: false },
+              { text: '일요일 애견 카페', completed: false },
+              { text: 'Vue 원고 집필 (완료)', completed: true },
+              { text: '자전거 타기 (완료)', completed: true },
+            ],
+          };
+        },
+        computed: {
+          sortedTodos() {
+            const todosCopy = [...this.todos];
+
+            return todosCopy.sort((a, b) => {
+              if (a.completed && !b.completed) {
+                return 1;
+              } else if (!a.completed && b.completed) {
+                return -1;
+              } else {
+                return a.text.localeCompare(b.text);
+              }
+            });
+          },
+        },
+        methods: {
+          addTodo() {
+            if (this.newTodo.trim() !== '') {
+              this.todos.push({ text: this.newTodo.trim(), completed: false });
+              this.newTodo = '';
+            }
+          },
+          removeTodo(todo) {
+            this.todos = this.todos.filter((t) => t !== todo);
+          },
+          toggleTodo(todo) {
+            todo.completed = !todo.completed;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
