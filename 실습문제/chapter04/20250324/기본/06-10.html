@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .warning {
+        border: 2px solid red;
+        background-color: lightblue;
+        color: black;
+        padding: 5px; /* Add some padding for better visual appearance */
+        display: inline-block; /* Makes the border wrap tightly around the content */
+      }
+      .info-icon {
+        margin-left: 5px; /* Space between input and icon */
+        font-size: 1.2em; /* Larger icon */
+        font-weight: bold;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>1부터 100까지만 입력가능합니다.</p>
+      점수 :
+      <input
+        type="number"
+        v-model.number="score"
+        :class="{ warning: !isValid }"
+      />
+      <span v-if="!isValid" class="info-icon">
+        <img src="image.png" alt="" width="40" height="40" />
+      </span>
+      <!-- Information Icon -->
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            score: null, // Initialize score to null
+          };
+        },
+        computed: {
+          isValid() {
+            return this.score !== null && this.score >= 1 && this.score <= 100;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

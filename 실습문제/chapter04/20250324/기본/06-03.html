@@ -1,0 +1,45 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button
+        :style="{ backgroundColor: bgColor, color: textColor }"
+        @mouseover="mouseOver"
+        @mouseleave="mouseLeave"
+      >
+        테스트
+      </button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            bgColor: 'aqua',
+            textColor: 'black',
+            hoverBgColor: 'lightgreen',
+            hoverTextColor: 'white',
+            defaultBgColor: 'aqua', // 기본 배경색을 위한 별도 변수
+            defaultTextColor: 'black', // 기본 글자색을 위한 별도 변수
+          };
+        },
+        methods: {
+          mouseOver() {
+            this.bgColor = this.hoverBgColor;
+            this.textColor = this.hoverTextColor;
+          },
+          mouseLeave() {
+            this.bgColor = this.defaultBgColor; // defaultBgColor 사용
+            this.textColor = this.defaultTextColor; // defaultTextColor 사용
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

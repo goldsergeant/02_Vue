@@ -1,0 +1,40 @@
+<div id="app">
+  <button :style="style1" @mouseover="mouseOver" @mouseleave="mouseLeave">
+    테스트
+  </button>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+  let vm = Vue.createApp({
+    name: 'App',
+    data() {
+      return {
+        style1: {
+          backgroundColor: 'aqua', // 평상시 색상
+          color: 'black',
+        },
+        hoverStyle: {
+          // 마우스 오버 시 스타일
+          backgroundColor: 'lightgreen', // 원하는 hover 색상으로 변경
+          color: 'white', // 원하는 hover 색상으로 변경
+        },
+        defaultStyle: {
+          // 평상 시 스타일 (data의 style1 과 동일하게 유지하는것이 좋습니다.)
+          backgroundColor: 'aqua',
+          color: 'black',
+        },
+      };
+    },
+    methods: {
+      mouseOver() {
+        // style1 객체를 hoverStyle 객체의 내용으로 덮어씌웁니다.
+        Object.assign(this.style1, this.hoverStyle);
+      },
+      mouseLeave() {
+        // style1 객체를 defaultStyle 객체의 내용으로 덮어씌웁니다.
+        Object.assign(this.style1, this.defaultStyle);
+      },
+    },
+  }).mount('#app');
+</script>

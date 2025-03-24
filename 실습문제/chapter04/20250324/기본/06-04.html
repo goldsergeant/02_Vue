@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button :style="[myColor, myLayout]">버튼</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            myColor: {
+              backgroundColor: 'purple', // 배경색 보라색
+              color: 'yellow', // 글자색 노란색
+            },
+            myLayout: {
+              width: '150px',
+              height: '80px',
+              textAlign: 'center', // 텍스트 중앙 정렬
+              display: 'flex', // flexbox를 사용하여 수직 중앙 정렬 (추가)
+              alignItems: 'center', // 수직 중앙 정렬 (추가)
+              justifyContent: 'center', // 수평 중앙 정렬 (textAlign 대신 사용해도 됨)
+            },
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
